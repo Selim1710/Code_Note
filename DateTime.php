@@ -1,11 +1,11 @@
 <?php
-
 /*
+
 //  Calculate duration between two times 
 $time1 = Carbon::parse($request->time_start);
 $time2 = Carbon::parse($request->time_end);
 $workingHour = $time2->diffInHours($time1);
-*/
+
 
 // add hour in php
 $date_time = "2023-06-06 10:00:00";
@@ -31,3 +31,7 @@ $min = substr($time_2, 14, 2);
 $sec = substr($time_2, 17, 2);
 
 $total_time = ($hour_2 - $hour_1) . ':' . ($min_2 - $min_1) . ':' . ($sec_2 - $sec_1);
+
+
+// Date-Time Local Value showing
+<input type="datetime-local" name="date_start" value="{{ date('Y-m-d\TH:i', strtotime($yourPassedVariableToView)) }}">
