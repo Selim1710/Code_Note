@@ -11,6 +11,10 @@ $workingHour = $time2->diffInHours($time1);
 $date_time = "2023-06-06 10:00:00";
 $final_time = date("Y-m-d h:i:s", strtotime("$date_time +1 hours"));
 
+// subtract day in php
+$day = date('Y-m-d', strtotime('-7 days'))
+
+
 
 // difference between two time in php
 $time1 = new DateTime($emp_entry);
@@ -35,3 +39,8 @@ $total_time = ($hour_2 - $hour_1) . ':' . ($min_2 - $min_1) . ':' . ($sec_2 - $s
 
 // Date-Time Local Value showing
 <input type="datetime-local" name="date_start" value="{{ date('Y-m-d\TH:i', strtotime($yourPassedVariableToView)) }}">
+
+
+
+
+
