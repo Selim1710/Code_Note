@@ -1,6 +1,5 @@
 <?php
-/*
-
+    /*
     //  Calculate duration between two times 
 
     $time1 = new DateTime($emp_entry);
@@ -10,9 +9,10 @@
 
     $total_working_hour = $total_time;
 
-*/
+    */
 
-/*
+
+    /*
     //  add hour and subtract hour
     $date_time = '2023-07-15 10:00:00';
     $DateTime1 = new DateTime($date_time);
@@ -22,7 +22,6 @@
     */
 
     /*
-
     // subtract day in php
     $day = date('Y-m-d', strtotime('-7 days'))
 
@@ -30,7 +29,6 @@
 
 
     /*
-
     // Date-Time Local Value showing
     <input type="datetime-local" name="date_start" value="{{ date('Y-m-d\TH:i', strtotime($yourPassedVariableToView)) }}">
 
