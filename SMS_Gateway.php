@@ -40,3 +40,5 @@ function smsGateWay($text, $mobile_number)
     return $response;
     
 }
+
+*/
