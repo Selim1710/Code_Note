@@ -2,16 +2,6 @@
 
 /*
 
-// form validation
-$request->validate([
-    'name' => 'required|alpha', // alpha:only take letter
-    'username' => 'required|regex:/^\S*$/u|regex:/^[\pL\s\-]+$/u', // for white space + special character 
-]);
-
-$request->validate([
-    'email' => 'unique:table_name,email,' . $user->id
-]);
-
 
 
 // login with mobile username and email in laravel
