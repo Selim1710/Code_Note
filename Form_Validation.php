@@ -1,4 +1,5 @@
 <?php
+/*
 
 // <!-- error message -->
 @if ($errors->any())

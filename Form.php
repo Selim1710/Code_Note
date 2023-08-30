@@ -26,6 +26,35 @@ public function index(Request $request)
 
 
  
+//////////////// edit with modal ////////////////
+  edit-button:
+    <button type="button" data-id="{{ $account->id }}"
+        data-account_no="{{ $account->account_no }}"
+        data-name="{{ $account->name }}"
+        data-initial_balance="{{ $account->initial_balance }}"
+        data-note="{{ $account->note }}"
+        data-edit_status="{{ $account->is_active }}" class="edit-btn btn btn-link"
+        data-toggle="modal" data-target="#editModal">
+        <i class="dripicons-document-edit"></i>
+        {{ trans('file.edit') }}
+    </button>
+  <script>
+      $('.edit-btn').on('click', function() {
+            $("#editModal input[name='account_no']").val($(this).data('account_no'));
+            $("#editModal input[name='name']").val($(this).data('name'));
+            $("#editModal input[name='initial_balance']").val($(this).data('initial_balance'));
+            $("#editModal input[name='account_id']").val($(this).data('id'));
+            $("#editModal textarea[name='note']").val($(this).data('note'));
+            var status = $(this).data('edit_status');
+            if(status==1){
+                alert('active');
+                $("#editModal input[name='edit_status']").
+            }else{
+                alert('in-active');
+            }
+        });
+  </script>
+
 //////////////// Problem: Multiple autocomplete in laravel  ////////////////
 
 
