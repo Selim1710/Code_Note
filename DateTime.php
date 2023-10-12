@@ -1,9 +1,9 @@
 <?php
     /*
-    //////////  date picker  ////////
+    //////////  date picker using jquery ////////
 
     <input type="text" name="date" id="datepicker" class="form-control" placeholder="dd/mm/yy">
-    
+
     // js
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
     <script src="//code.jquery.com/jquery-1.10.2.js"></script>
