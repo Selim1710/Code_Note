@@ -20,6 +20,21 @@
         });
     </script>
 
+    //////////  convert date format using jquery ////////
+
+    <script>
+     // thats format: d/m/y
+        var date = "25/10/2023";
+
+        var conver_date = date.split('/');
+
+        // converting: m/d/y
+        var expired_date = conver_date[1] + '/' + conver_date[0] + '/' + conver_date[2];
+
+        output: 10/25/2023
+    </script>
+
+
 
     //////////  Calculate duration between two times  ////////
 
