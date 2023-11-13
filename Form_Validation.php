@@ -23,16 +23,16 @@ $request->validate([
 
 
 // <!-- file size validation using jquery -->
-<script>
+ <script>
     $(document).ready(function() {
         $('#image').bind('change', function() {
-            var file_size = (this.files[0].size);
-            var maximum_file_size = Math.round(file_size / (1024 * 1024)); // for mb
-            // console.log('maximum_file_size: ' + maximum_file_size);
+            var uploaded_file_size = (this.files[0].size);
+            var file_size = Math.round(uploaded_file_size / (1024 * 1024)); // for mb
+            // console.log('file_size: ' + file_size);
 
-            // 2mb validation
-            if (maximum_file_size > 2) {
-                alert('large');
+            var maximum_required_size = 2; // 2mb validation
+            if (file_size > maximum_required_size) {
+                alert('You can upload maximum: '+maximum_required_size +' mb . But your file size is: '+file_size + 'mb .');
                 $('#image').val('');
             };
         });
