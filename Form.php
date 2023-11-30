@@ -553,6 +553,14 @@ public function subDeptWiseEmployeeAjaxSearch(Request $request)
         });
     });
 </script>
-
 // end payment type calculation
+
+
+
+// fixed after point in jquery
+
+ var total = 1.25555 * 1;
+ total = total.toFixed(3);
+ 
+// end
 
