@@ -559,8 +559,8 @@ public function subDeptWiseEmployeeAjaxSearch(Request $request)
 
 // fixed after point in jquery
 
- var total = 1.25555 * 1;
+ var total = parseFloat(1.25555) * parseFloat(1);
  total = total.toFixed(3);
- 
+
 // end
 
