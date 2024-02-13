@@ -83,6 +83,24 @@
     $month_name = date('F'); // December
     $month_name = date('M'); // Dec
     
+
+
+
+////////// Date-range from start and end date ////////
+
+    $datesArray = []; 
+        $timePeriod = new DatePeriod(
+            new DateTime($start_date),
+            new DateInterval('P1D'),
+            new DateTime($end_date)
+        );
+    
+        foreach ($timePeriod as $key => $value) {
+            $date = $value->format('Y-m-d');    
+            $datesArray[] = $date;  
+        }
+       // return $datesArray;
+        $data['datesArray'] = $datesArray;
     
     --- the end ---
     */
