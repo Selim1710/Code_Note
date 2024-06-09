@@ -1,5 +1,4 @@
 <?php
-
 /*
 
 // login with mobile username and email in laravel
@@ -22,285 +21,57 @@ public function index(Request $request)
 }
 
 
- 
-//////////////// edit with modal ////////////////
-  edit-button:
-    <button type="button" data-id="{{ $account->id }}"
-        data-account_no="{{ $account->account_no }}"
-        data-name="{{ $account->name }}"
-        data-initial_balance="{{ $account->initial_balance }}"
-        data-note="{{ $account->note }}"
-        data-edit_status="{{ $account->is_active }}" class="edit-btn btn btn-link"
-        data-toggle="modal" data-target="#editModal">
-        <i class="dripicons-document-edit"></i>
-        {{ trans('file.edit') }}
-    </button>
-  <script>
-      $('.edit-btn').on('click', function() {
-            $("#editModal input[name='account_no']").val($(this).data('account_no'));
-            $("#editModal input[name='name']").val($(this).data('name'));
-            $("#editModal input[name='initial_balance']").val($(this).data('initial_balance'));
-            $("#editModal input[name='account_id']").val($(this).data('id'));
-            $("#editModal textarea[name='note']").val($(this).data('note'));
-            var status = $(this).data('edit_status');
-            if(status==1){
-                alert('active');
-                $("#editModal input[name='edit_status']").
-            }else{
-                alert('in-active');
-            }
-        });
-  </script>
-
-//////////////// Problem: Multiple autocomplete in laravel  ////////////////
-// Blade:
-
-// {{-- description --}}
-   <div class="form-group">
-   <label> Details</label>
-      <input type="search" class="form-control description_search"
-        placeholder="Type here">
-       <div class="description_suggession"></div>
-     <textarea name="description" cols="30" rows="3" class="form-control description"></textarea>
-   </div>
-
-script:
-
-
-// {{-- description ajax --}}
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
-</script>
-<script>
-    $(document).ready(function() {
-        $('.description_search').keyup(function(e) {
-            e.preventDefault();
-            var searching_data = $('.description_search').val();
-            //  console.log(searching_data);
-
-
-            $.ajax({
-                url: "{{ route('remainder.autocomplete-search') }}",
-                type: "get",
-                data: {
-                    searching_data: searching_data
-                },
-                success: function(data) {
-                    $('.description_suggession').fadeIn();
-                    $('.description_suggession').html(data);
-                },
-                errors: function(error) {
-                    console.log(error);
-                }
-            });
-        });
-
-
-        $(document).on('click', '.description_suggession li', function(e) {
-            e.preventDefault();
-            var content = $('.description').val();
-            var text = $(this).text();
-            // Add the text to the textarea
-            var removed_button = '<button class="text-danger">X</button>';
-            if (content) {
-                $('.description').val(content + ' ,  ' + text);
+//////////////////////////  check-uncheck //////////////////////////
+    <script>
+        function check_uncheck_checkbox(category_id, isChecked) {
+            if (isChecked) {
+                $('.sub_category_' + category_id).each(function() {
+                    $('#' + category_id).show(); // sub category show
+                    this.checked = true;
+                });
             } else {
-                $('.description').val(text);
+                $('.sub_category_' + category_id).each(function() {
+                    this.checked = false;
+                    $('#' + category_id).hide(); // sub category hide
+                });
             }
-
-
-            $('.description_search').val(' ');
-            $('.description_suggession').fadeOut();
-        });
-    });
-</script>
-
-
-// controller:
-  public function autoCompleteSearch(Request $request)
-    {
-        $search = ($request->searching_data);
-        $data = Lead::where('name', 'LIKE', "%$search%")->get();
-        $output = '<ul class="dropdown-menu" style="display:block; position:relative">';
-        foreach ($data as $row) {
-            $output .= '
-       <li><a href="#">' . $row->name . '</a></li>
-       ';
         }
-        $output .= '</ul>';
-        echo $output;
-    }
-
- // route:
- Route::get('/autocomplete/search', 'RemainderController@autoCompleteSearch')->name('remainder.autocomplete-search');
+    </script>
 
 
-
-//////////////////////////  three input field calculation  //////////////////////////  
-
-
- $(document).on('keyup', '.principal_amount,.loan_interest,.loan_interest_amount', function() {
-   var principal_amount = parseFloat($(".principal_amount").val());
-   var loan_interest = parseFloat($(".loan_interest").val());
-  var loan_interest_amount = parseFloat($(".loan_interest_amount").val());
-    if (loan_interest) {
-        var interest = 0;
-        interest = principal_amount * loan_interest / 100;
-        if (!interest) interest = 0
-        $(".loan_interest_amount").val(interest);
-        var grand_total = 0;
-        grandtotal = (principal_amount + parseFloat(interest));
-        if (!grandtotal) grand_total = 0;
-        $(".grand_total").val(grandtotal);
-    } else {
-        var interest = 0;
-        interest = principal_amount + loan_interest_amount;
-        $(".grand_total").val(interest);
-    }
-});
-
-
+ 
 
 //////////////////////////  Ajax search //////////////////////////
         
- // search Yearly Deposit:
-
-$('#searchYearlyDeposit').on('keyup', function() {
+$('#search').on('keyup', function() {
     var search = $(this).val();
     // alert(search);
+
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
     $.ajax({
         type: 'get',
         url: '{{ URL::to('search/yearly/deposit/member') }}',
         data: { value:search },
         success: function(data) {
-            $('#resultYearlyDeposit').html(data)
+            $('#result').html(data)
         },
     });
 });                         
     
  // controller code:
 
-public function searchYearlyDeposite(Request $request)
+public function search(Request $request)
 {
     $search = $request->value;
     $data['items'] = YearlyDeposit::where('years',$search)->orderBy('id','DESC')->get();
     return view('yearlydeposit.search_yearly_deposite_by_ajax', $data);
 }
 
-
-
-
-////////////////////////// Add a string into ajax ( .val() )  ////////////////////////// 
- 
-$('#customer-group-id').on('change', function(){
-    var member_type = $(this).val();
-    var get_member_code = $('#get_member_code').val();
-
-
-    if(member_type == 1){
-        $('#member_code').val('G' + get_member_code);
-    }else{
-        $('#member_code').val('B' + get_member_code);
-    }
-});
-
-
-//////////////////////////  laravel dependency with ajax  ////////////////////////// 
-
-Step-1:
-
-{{-- ajax - dept_wise_subdept --}}
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $("#filterResult").hide();
-            $("#depart_id").change(function() {
-                $.ajaxSetup({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    }
-                });
-                var depart_id = $("#depart_id").val();
-                $.ajax({
-                    type: "GET",
-                    url: "dept-wise-subdept-search-ajax/" + depart_id,
-                    dataType: "json",
-                    success: function(response) {
-                        $('#sub_depart_id').html(response);
-                    },
-                    error: function(error) {
-                        alert('ajax error 1');
-                    }
-                });
-                $("#sub_depart_id").click(function() {
-
-
-                    $('#allResult').hide();
-                    $("#filterResult").show();
-
-
-                    var sub_dept_id = $("#sub_depart_id").val();
-                    $.ajax({
-                        type: "GET",
-                        url: "get/subdepartment/wise/employee/by/ajax",
-                        data: {
-                            sub_dept_id: sub_dept_id
-                        },
-                        success: function(data) {
-                            $('#filterResult').html(data);
-                        },
-                        error: function(error) {
-                            alert('ajax error 2');
-                        },
-                    });
-                });
-            });
-            $("#sub_depart_id").change(function() {
-
-
-                $('#allResult').hide();
-                $("#filterResult").show();
-
-
-                var sub_dept_id = $("#sub_depart_id").val();
-                $.ajax({
-                    type: "GET",
-                    url: "get/subdepartment/wise/employee/by/ajax",
-                    data: {
-                        sub_dept_id: sub_dept_id
-                    },
-                    success: function(data) {
-                        $('#filterResult').html(data);
-                    },
-                    error: function(error) {
-                        alert('ajax error 2');
-                    },
-                });
-            });
-        });
-</script>
-
-Step-2: controller code
-
-// sub department ajax search
-
-public function deptWiseSubDeptAjaxSearch($id)
-{
-    $html = '';
-    $subdepts = SubDepartment::where('sdepart_departid', $id)->get();
-    foreach ($subdepts as $sub) {
-        $html .= '<option value="' . $sub->sdepart_id  . '"> ' . $sub->sdepart_name . ' </option> ';
-    }
-    return response()->json($html);
-}
-
-
-// employee ajax search
-public function subDeptWiseEmployeeAjaxSearch(Request $request)
-{
-    $id = $request->sub_dept_id;
-    $data['employees'] = Employee::where('emp_sdepart_id', $id)->get();
-    return view('Admin.sub_dept_wise_shift.sub_dept_employee',$data);
-}
 
 
 ////////////// Problem: add more input field using jquery  //////////////
@@ -557,7 +328,8 @@ public function subDeptWiseEmployeeAjaxSearch(Request $request)
 
 
 
-// fixed after point in jquery
+
+///////////////////////////// fixed after point in jquery ///////////////////////////
 
  var total = parseFloat(1.25555) * parseFloat(1);
  total = total.toFixed(3);
