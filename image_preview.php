@@ -24,3 +24,14 @@
         preview.appendChild(newImage);
     }
 </script>
+
+
+////////// gellary-image changing //////////
+
+    <script type="text/javascript">
+        function changeProductImage(event) {
+            document.querySelector("#product-zoom").src = event.children[0].src;
+            // event.preventDefault();
+            // document.querySelector('#product-zoom').scrollIntoView();
+        }
+    </script>
