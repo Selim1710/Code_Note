@@ -1,10 +1,12 @@
 <?php
 /*
 
-// Note-1: limit string
-{!! Str::limit($item->description, 30) !!}
+    /////////////////// Note-1: limit string ///////////////////
 
-//  Note-2: month array
+    {!! Str::limit($item->description, 30) !!}
+
+
+    /////////////////////  Note-2: month array ///////////////////
 
     @php
         $arraymonths = [
@@ -32,15 +34,30 @@
     @endif
 
 
-
-
-    // Note-3: when query
+    ///////////////////// Note-3: when query ///////////////////
     $orders = DB::table('orders')
             ->orderBy('id', 'desc')
             ->when($status != '', function ($query) use ($status) {
                 $query->where('status', $status);
             })
             ->get();
+            
+
+
+   ///////////////////// Note-4: array sum in jquery ///////////////////
+
+    var total = 0;
+    $(".amount").each(function() {
+        if($(this).val() != ''){
+         total += parseFloat($(this).val());
+        }
+    });
+    $("#grand_total").val(total);
+
+    
+
+   ///////////////////// Note-5:  ///////////////////
+
 
 
  */
