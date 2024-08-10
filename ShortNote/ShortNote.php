@@ -1,10 +1,10 @@
-<?php 
+<?php
 /*
 
-// limit string
+// Note-1: limit string
 {!! Str::limit($item->description, 30) !!}
 
-// month array
+//  Note-2: month array
 
     @php
         $arraymonths = [
@@ -31,4 +31,16 @@
         @endforeach
     @endif
 
-?>
+
+
+
+    // Note-3: when query
+    $orders = DB::table('orders')
+            ->orderBy('id', 'desc')
+            ->when($status != '', function ($query) use ($status) {
+                $query->where('status', $status);
+            })
+            ->get();
+
+
+ */
