@@ -52,6 +52,7 @@
          total += parseFloat($(this).val());
         }
     });
+    total = total.toFixed(3); // after point it will take 3 digit. example: 1.333
     $("#grand_total").val(total);
 
     
