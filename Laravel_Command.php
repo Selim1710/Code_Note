@@ -1,12 +1,13 @@
 <?php
 
-# 1. composer remove vendor/packageName
+# composer create-project laravel/laravel:^8.0 hello-world
 
-# 2. php artisan make:model ModelName -mcr 
+# composer remove vendor/packageName
 
-# 3. php artisan make:model ModelName -mcr --api  // api resource controller
+# php artisan make:model ModelName -mcr 
 
-# 4. php artisan make:model ModelName -mcr -R  // with Request
+# php artisan make:model ModelName -mcr --api  // api resource controller
 
-# 5. php artisan make:model ModelName -a  // model,migration,factory
+# php artisan make:model ModelName -mcr -R  // with Request
 
+# php artisan make:model ModelName -a  // model,migration,factory
