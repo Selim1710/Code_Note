@@ -35,10 +35,17 @@
 
 
     ///////////////////// Note-3: when query ///////////////////
+    
+    $data['start_date'] = $start_date =$request->start_date ?? date('Y-m-d');
+    $data['end_date'] = $end_date = $request->end_date ?? date('Y-m-d');
+    $data['customer_id'] = $customer_id = $request->customer_id ?? 0;
+
     $orders = DB::table('orders')
             ->orderBy('id', 'desc')
-            ->when($status != '', function ($query) use ($status) {
-                $query->where('status', $status);
+            ->whereDate('date', '>=', $start_date)
+            ->whereDate('date', '<=', $end_date)
+            ->when($customer_id != 0, function ($query) use ($customer_id) {
+                $query->where('customer_id', $customer_id);
             })
             ->get();
             
