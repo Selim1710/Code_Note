@@ -1,0 +1,33 @@
+
+<img src="{{ $_SERVER['APP_URL'] }}images/productimage/{{ $product->base_image ?? 'N/A' }}"
+                            id="imageProductShare" style="display:none" />
+
+<script>
+    function Facebook() {
+        var imgsrc = document.getElementById("imageProductShare").src;
+        var fbpopup = window.open("https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(imgsrc), "pop",
+            "width=600, height=400, scrollbars=no");
+        return false;
+    }
+
+    function Linkedin() {
+        var imgsrc = document.getElementById("imageProductShare").src;
+        var fbpopup = window.open("https://www.linkedin.com/shareArticle?u=" + encodeURIComponent(imgsrc), "pop",
+            "width=600, height=400, scrollbars=no");
+        return false;
+    }
+
+    function Twitter() {
+        var imgsrc = document.getElementById("imageProductShare").src;
+        var fbpopup = window.open("https://twitter.com/share?u=" + encodeURIComponent(imgsrc), "pop",
+            "width=600, height=400, scrollbars=no");
+        return false;
+    }
+</script>
+<script type="text/javascript">
+    function changeProductImage(event) {
+        document.querySelector("#product-zoom").src = event.children[0].src;
+        // event.preventDefault();
+        // document.querySelector('#product-zoom').scrollIntoView();
+    }
+</script>
