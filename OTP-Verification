@@ -1,0 +1,7 @@
+# Registraton OTP Verification: 
+* step-1: Submit registration form.
+* step-2: Go to controller where submitted data are storing.
+          - now default status will be inactive.
+          - store status, OTP_Code, otp_expire_at (DateTime - this will setup from settings), 
+* step-3: after store above data, show a modal where OTP code will be insert.
+          - if modal otp code, mobile_no is matched with database otp_code and mobile_no then user will be active.
