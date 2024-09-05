@@ -64,8 +64,20 @@
 
     
 
-   ///////////////////// Note-5:  ///////////////////
-
-
+   ///////////////////// Note-5: For Loop ///////////////////
+ @php
+        $year_end=50;
+        $year=2024;
+@endphp
+@for ($i = 1; $i < $year_end; $i++)
+    @php
+        ++$year;
+    @endphp
+    
+    <option value="{{ $year }}"
+        {{ $year == date('Y') ? 'Selected' : '' }}>
+        {{ $year }}
+    </option>
+@endfor
 
  */
