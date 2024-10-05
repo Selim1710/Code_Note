@@ -1,0 +1,2 @@
+* create new branch: git checkout -b dev_selim
+* check current branch: git branch
