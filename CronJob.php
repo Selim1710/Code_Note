@@ -1,6 +1,27 @@
 <?php
 
 /***
+/////////////////// for laravel 11 ///////////////////////////// 
+
+ * step-1: php artisan make:command DailyTask --command=app:daily-task
+ * step-2: go to => app/Console/Commands/DailyTask.php
+ * step-3: Now go to => routes/console.php
+
+     write below code in console.php:
+ 
+       use Illuminate\Support\Facades\Schedule;
+ 
+        Schedule::command('test:cron')->everyFiveMinutes();
+
+
+ * step-4: php artisan schedule:run
+
+
+
+ 
+
+
+/////////////////// for laravel 8 ///////////////////////////// 
  * Terminal Command:
  * step-1: php artisan schedule:run
  * step-2: php artisan schedule:work
