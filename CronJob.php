@@ -6,12 +6,11 @@
  * step-1: php artisan make:command DailyTask --command=app:daily-task
  * step-2: go to => app/Console/Commands/DailyTask.php
  * step-3: Now go to => routes/console.php
-
      write below code in console.php:
  
        use Illuminate\Support\Facades\Schedule;
  
-        Schedule::command('test:cron')->everyFiveMinutes();
+        Schedule::command('app:daily-task')->everyFiveMinutes();
 
 
  * step-4: php artisan schedule:run
