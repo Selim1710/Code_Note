@@ -2,7 +2,7 @@
 
 1. Laravel project crete
 
-2. If you need auth then as normal breez (as project backend laravel and frontend vue3)
+2. If you need auth then as normal breeze (as project backend laravel and frontend vue3)
 
 3. Step one: Server site setup
 	3.1 composer require inertiajs/inertia-laravel
@@ -38,10 +38,10 @@
 
 	4.6 npm install vite@latest
 	   
-	4.7 npm install @vitejs/plugin-vue --save-dev --legacy-peer-deps
+		=>if error then : 4.7 npm install @vitejs/plugin-vue --save-dev --legacy-peer-deps
 
 	4.8 npm install vue@latest
-		4.8.1 if given erro then use this (npm install vue@latest --legacy-peer-deps)
+		=>if error then : 4.8.1 if given erro then use this (npm install vue@latest --legacy-peer-deps)
 
 	4.9 update resource/js/app.js
 	 import './bootstrap';
