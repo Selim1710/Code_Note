@@ -10,3 +10,14 @@ MAIL_PASSWORD=ytsihyhrgdlwidrz
 MAIL_ENCRYPTION=null
 MAIL_FROM_ADDRESS="hello@example.com"
 MAIL_FROM_NAME="${APP_NAME}"
+
+
+# step of getting smptp mail code:
+ * login google account
+ * click on my account
+ * goto security
+ * allow 2 step verifications
+ * again go to my account home page
+ * search app password
+ * now set a project name and copy the code if there have any space then remove it and paste into MAIL_PASSWORD.
+ 
