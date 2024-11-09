@@ -1,0 +1,4 @@
+# goto : D:\xampp\mysql\backup
+# copy all file
+# now to goto: D:\xampp\mysql\data
+# now select all file . now deselect database file. and paste there.
