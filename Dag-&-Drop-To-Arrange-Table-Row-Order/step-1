@@ -1,0 +1,14 @@
+
+npm install sortablejs
+
+# if there id no permission to run this command then,
+
+ * click window + x 
+ * run as admin
+
+ * then run below command:
+
+   Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
+
+
+   * now run again: npm install sortablejs

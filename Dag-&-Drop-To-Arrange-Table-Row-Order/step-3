@@ -1,0 +1,3 @@
+route: 
+
+  Route::post('/update-order', [HeadController::class, 'updateOrder'])->name('save-order');

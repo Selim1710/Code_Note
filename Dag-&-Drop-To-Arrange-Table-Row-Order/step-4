@@ -1,0 +1,19 @@
+# controller code:
+
+
+public function updateOrder(Request $request)
+{
+
+$order = $request->input('order');
+
+// Loop through the order and update each record's position
+foreach ($order as $index => $id) {
+$row = Head::find($id);
+if ($row) {
+$row->order = $index;
+$row->save();
+}
+}
+
+return response()->json(['success' => true]);
+}
