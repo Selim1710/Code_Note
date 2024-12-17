@@ -1,1 +1,2 @@
-Important code are notted there.
+# Add mysql in laragon:
+Menu -> Tools -> Quick add -> phpMyAdmin.
