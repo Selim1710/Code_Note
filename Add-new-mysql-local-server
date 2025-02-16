@@ -1,0 +1,49 @@
+
+# Step - 1: goto: C:\laragon\etc\apps\phpMyAdmin
+# Step - 2: open : config.inc.php file
+# Step - 3: copy and paster above code: 
+
+$i = 0;
+
+
+/**
+ * First server
+ */
+$i++;
+$cfg['Servers'][$i]['auth_type'] = 'config';
+/* Server parameters */
+$cfg['Servers'][$i]['host'] = '127.0.0.1';
+$cfg['Servers'][$i]['connect_type']  = 'tcp';
+$cfg['Servers'][$i]['compress'] = false;
+$cfg['Servers'][$i]['AllowNoPassword'] = true;
+$cfg['Servers'][$i]['port'] = 3306;
+
+
+/**
+ * Second server
+ */
+$i++;
+
+$cfg['Servers'][$i]['auth_type'] = 'config';
+/* Server parameters */
+$cfg['Servers'][$i]['host'] = '192.168.0.252';
+$cfg['Servers'][$i]['connect_type']  = 'tcp';
+$cfg['Servers'][$i]['compress'] = false;
+$cfg['Servers'][$i]['AllowNoPassword'] = true;
+$cfg['Servers'][$i]['port'] = 3306;
+
+
+
+/**
+ * Third server
+ */
+
+$i++;
+
+$cfg['Servers'][$i]['auth_type'] = 'config';
+/* Server parameters */
+$cfg['Servers'][$i]['host'] = '192.168.0.249';
+$cfg['Servers'][$i]['connect_type']  = 'tcp';
+$cfg['Servers'][$i]['compress'] = false;
+$cfg['Servers'][$i]['AllowNoPassword'] = true;
+$cfg['Servers'][$i]['port'] = 3306;
