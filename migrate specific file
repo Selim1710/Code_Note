@@ -1,0 +1,1 @@
+php artisan migrate --path=modules/HRM/database/migrations/2025_03_18_120704_create_attendance_logs_table.php
