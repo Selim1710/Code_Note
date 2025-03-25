@@ -1,4 +1,5 @@
 
+<!-------------------------- print-1 ---------------->
 <!-- button -->
 <a id="click_print" class="btn btn-info ml-2 text-white btn-sm">
     <i class="dripicons-print"></i>
@@ -15,3 +16,22 @@
         $('#table_print').printThis();
     })
 </script>
+
+
+
+<!-------------------------- print-2 ---------------->
+  <button type="button" onclick="printDiv()" class="btn btn-primary btn-sm mr-3" id="print-invoice"> 
+      <i class="fas fa-print"></i>Print
+  </button>
+@push('scripts')
+    <script src="{{ asset('js/jquery.printarea.js') }}"></script>
+    <script>
+        function printDiv() {
+            var printContents = document.getElementById("invoice").innerHTML;
+            var originalContents = document.body.innerHTML;
+            document.body.innerHTML = printContents;
+            window.print();
+            document.body.innerHTML = originalContents;
+        }
+    </script>
+@endpush
