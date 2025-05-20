@@ -1,0 +1,9 @@
+
+  $singleArray = array_map('intval', Arr::flatten([$firstArray, $secondArray]));
+  $singleArray = array_unique($singleArray); // get unique value from this two array
+
+  // remove specific id from this array
+  $removeId = $request->id;
+  if (!empty($removeId)) {
+      $combined = array_values(array_filter($combined, fn($value) => $value != $removeId));
+  }
