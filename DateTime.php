@@ -1,5 +1,14 @@
-<?php
     /*
+    # Human readable date format: 
+                    53 mins ago, 
+                    2 hours ago
+                    3 days ago 
+
+
+     Carbon::parse($value->sale_date)->diffForHumans() ?? '';
+
+
+
     //////////  date picker using jquery ////////
 
     <input type="text" name="date" id="datepicker" class="form-control" placeholder="dd/mm/yy">
@@ -102,9 +111,3 @@
        // return $datesArray;
         $data['datesArray'] = $datesArray;
 
-
-
-        
-    
-    --- the end ---
-    */
