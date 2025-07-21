@@ -1,0 +1,12 @@
+# step-1: goto laragon >> terminal - copy and paste below command thats will open your mysql database:
+
+mysql -u root -p
+GRANT ALL PRIVILEGES ON . TO 'root'@'%' WITH GRANT OPTION;
+UPDATE mysql.user SET Host='%' WHERE Host='localhost' AND User='root';
+FLUSH PRIVILEGES;
+
+# step-2: now goto windows terminal and write:
+  ipconfig
+
+# step-3: now copy your ip and paste below:
+http://192.168.0.206:8005
