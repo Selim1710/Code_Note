@@ -1,0 +1,66 @@
+🧩 Step 1: Add necessary environment values in .env
+
+SMS_API_URL=http://118.67.213.114:3775/sendtext
+SMS_API_KEY=your_api_key_here
+SMS_SECRET_KEY=your_secret_key_here
+SMS_CALLER_ID=8801xxxxxxx   # Your approved sender number
+
+
+🧩 Step 2: Create a helper function to send SMS
+You can put this in a custom helper file or directly in a service class.
+
+use Illuminate\Support\Facades\Http;
+
+function sendSmsOtp($phone, $message)
+{
+    $response = Http::get(env('SMS_API_URL'), [
+        'apikey'         => env('SMS_API_KEY'),
+        'secretkey'      => env('SMS_SECRET_KEY'),
+        'callerID'       => env('SMS_CALLER_ID'),
+        'toUser'         => $phone,
+        'messageContent' => $message,
+    ]);
+
+    return $response->json();
+}
+
+
+
+🧩 Step 3: Generate OTP and send SMS in controller
+In your AppointmentController (or wherever appointment is stored):
+
+
+use Illuminate\Support\Str;
+
+public function store(Request $request)
+{
+    // Validate input
+    $validated = $request->validate([
+        'visitor_name' => 'required',
+        'phone' => 'required',
+        // other fields
+    ]);
+
+    // Generate 6-digit OTP
+    $otp = rand(100000, 999999);
+
+    // Save to DB
+    $appointment = Appointment::create([
+        'visitor_name' => $validated['visitor_name'],
+        'phone' => $validated['phone'],
+        'otp' => $otp,
+        // other fields
+    ]);
+
+    // Send SMS
+    $message = "Your OTP for visiting appointment is: {$otp}";
+    $smsResponse = sendSmsOtp($validated['phone'], $message);
+
+    if ($smsResponse['Status'] === '0') {
+        return response()->json(['message' => 'Appointment created and OTP sent.']);
+    } else {
+        return response()->json(['message' => 'Appointment created, but OTP sending failed.'], 500);
+    }
+}
+
+
