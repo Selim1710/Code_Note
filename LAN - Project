@@ -1,0 +1,42 @@
+################################# LAN project running #################################
+
+# step-1: run below command in vscode terminal : 
+
+```bash 
+php artisan serve --host=0.0.0.0 --port=8000
+```
+
+
+# step-2: run below command in cmd terminal : 
+
+```bash 
+ipconfig
+```
+
+# step-3: now replace your ip in below url : 
+```bash 
+http://192.168.0.206:8000
+```
+
+
+#################################  Add Multiple Local Server   #################################
+
+# step-1: goto the file in your pc:  C:\laragon\etc\apps\phpMyAdmin\conig.php
+
+# step-2: copy paste below code:
+
+
+$i++;
+
+$cfg['Servers'][$i]['auth_type'] = 'config';
+/* Server parameters */
+$cfg['Servers'][$i]['host'] = '192.168.68.112';
+$cfg['Servers'][$i]['connect_type']  = 'tcp';
+$cfg['Servers'][$i]['compress'] = false;
+$cfg['Servers'][$i]['AllowNoPassword'] = true;
+$cfg['Servers'][$i]['port'] = 3306;
+$cfg['Servers'][$i]['verbose'] = "Hadi / 192.168.68.112";
+
+
+
+#################################  END  #################################
